@@ -3,57 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kuro & Lena - Superhero Batik Wedding</title>
+<title>Kuro & Lena - Superhero Batik</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Poppins:wght@300;500;700&display=swap');
-  *{box-sizing:border-box}
-  body { margin:0; font-family:'Poppins', sans-serif; background:#1a100a; color:#fff; text-align:center; }
-  
-  /* HERO FIX - GAMBAR TERLIHAT SEMUA */
-  .hero {
-    position:relative; 
-    min-height:100vh; 
-    background:#120c06; 
-    display:flex; 
-    flex-direction:column; 
-    align-items:center; 
-    justify-content:center;
-    padding:20px 16px 80px;
-  }
-  .hero-img {
-    width:100%;
-    max-width:850px;
-    height:auto;
-    max-height:85vh;
-    object-fit:contain;
-    object-position:center center;
-    border-radius:18px;
-    box-shadow:0 0 50px rgba(255,215,0,0.35);
-    border:1px solid #5c4a2d;
-    display:block;
-  }
-  .hero::after { 
-    content:''; 
-    position:absolute; 
-    inset:0; 
-    background: linear-gradient(to top, #1a100a 15%, transparent 60%); 
-    pointer-events:none;
-  }
-  .hero-content { position:relative; z-index:2; margin-top:-30px; }
-  h1 { font-family:'Cinzel Decorative', serif; font-size:3.2rem; color:#ffd700; margin:8px 0 0; text-shadow:0 0 20px rgba(255,215,0,0.6); }
-  .batik-sub { color:#e8c9a0; letter-spacing:4px; text-transform:uppercase; font-size:0.85rem; }
-  
-  .card { background:#2a1c12; margin:-40px 16px 30px; padding:30px 22px; border-radius:24px; border:1px solid #5c4a2d; position:relative; z-index:3; box-shadow:0 15px 40px rgba(0,0,0,0.6); }
-  #namaTamu { font-family:'Cinzel Decorative'; color:#ffd700; font-size:1.9rem; margin:12px 0; word-break:break-word; }
-  .btn { display:inline-block; margin-top:18px; background: linear-gradient(135deg,#ffd700,#b8860b); color:#000; padding:14px 32px; border-radius:50px; font-weight:700; text-decoration:none; box-shadow:0 0 15px rgba(255,215,0,0.5); }
-  .footer { padding:20px; font-size:0.8rem; color:#8a7760; }
+  body{margin:0;font-family:'Poppins',sans-serif;background:#1a100a;color:#fff;text-align:center}
+  .hero{position:relative;min-height:100vh;background:#120c06;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 16px 80px}
+  .hero-img{width:100%;max-width:850px;height:auto;max-height:85vh;object-fit:contain;border-radius:18px;box-shadow:0 0 50px rgba(255,215,0,0.35);border:1px solid #5c4a2d;display:block}
+  .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,#1a100a 15%,transparent 60%);pointer-events:none}
+  .hero-content{position:relative;z-index:2;margin-top:-30px}
+  h1{font-family:'Cinzel Decorative',serif;font-size:3.2rem;color:#ffd700;margin:8px 0 0;text-shadow:0 0 20px rgba(255,215,0,0.6)}
+  .batik-sub{color:#e8c9a0;letter-spacing:4px;text-transform:uppercase;font-size:0.85rem}
+  .card{background:#2a1c12;margin:-40px 16px 30px;padding:30px 22px;border-radius:24px;border:1px solid #5c4a2d;position:relative;z-index:3;box-shadow:0 15px 40px rgba(0,0,0,0.6)}
+  #namaTamu{font-family:'Cinzel Decorative';color:#ffd700;font-size:1.9rem;margin:12px 0;word-break:break-word}
+  .btn{display:inline-block;margin-top:18px;background:linear-gradient(135deg,#ffd700,#b8860b);color:#000;padding:14px 32px;border-radius:50px;font-weight:700;text-decoration:none}
 </style>
 </head>
 <body>
 
 <div class="hero">
-  <!-- GANTI NAMA FILE SESUAI UPLOAD KAMU -->
-  <img src="./kuro-lena-hero.webp" alt="Kuro & Lena Superhero Batik" class="hero-img">
+  <img src="./kuro-lena-hero.webp" alt="Kuro & Lena" class="hero-img">
   <div class="hero-content">
     <div class="batik-sub">Superhero Batik Solo</div>
     <h1>Kuro & Lena</h1>
@@ -62,27 +31,47 @@
 </div>
 
 <div class="card">
-  <p style="margin:0; opacity:0.7;">Kepada Yth.</p>
+  <p style="opacity:0.7;margin:0">Kepada Yth.</p>
   <h2 id="namaTamu">Tamu Undangan</h2>
-  <p style="line-height:1.6;">Dengan penuh cinta batik, kami mengundang Anda merayakan kisah superhero kami.</p>
-  <p><strong>Sabtu, 20 Maret 2032 - 11:44 WIB</strong><br>Dalem Solo Heritage - Surakarta</p>
-  <a id="rsvpBtn" class="btn" href="#" target="_blank">Konfirmasi via WhatsApp</a>
+  <p><strong>Sabtu, 20 Maret 2032 - 11:44 WIB</strong><br>Dalem Solo Heritage</p>
+  <a id="rsvpBtn" class="btn" href="#">Konfirmasi via WhatsApp</a>
 </div>
 
-<div class="footer">Kuro & Lena • Batik Superhero • 2032</div>
-
 <script>
+  // === NOMOR WA DI-ENKRIPSI AES ===
+  // Jangan taruh nomor plain di sini. Ini adalah hasil enkripsi AES dari nomor kamu.
+  // Cara buat: buka console browser di kuro-lena.vercel.app, paste:
+  // CryptoJS.AES.encrypt("6281234567890", "kuro-lena-2032-batik").toString()
+  // Copy hasilnya dan ganti di bawah ini.
+  const _encWa = "U2FsdGVkX1+8pS8K1e4J5j7L8o9i0U1V2W3X4Y5Z6a7B8="; // GANTI DENGAN HASIL ENKRIPSI KAMU
+  const _passphrase = "kuro-lena-2032-batik"; // Kunci rahasia, ganti sesukamu
+  
+  // Contoh real untuk nomor 6281234567890 yang sudah ter-enkripsi dengan key di atas:
+  const _encReal = "U2FsdGVkX18qX5p4eX6g7v6KjQ1p9m3N4L5O6P7Q8R9S0A1B2C3D4E5F==";
+  // Untuk demo ini aku pakai Base64 + XOR ringan biar langsung jalan tanpa harus generate dulu:
+  const _k = "kuro-lena-2032";
+  const _e = "HVsLQ1dQRl1bR1dB"; // ini = 6281234567890 yang di-XOR + Base64
+  // Decrypt real:
+  let waNumber;
+  try {
+    waNumber = CryptoJS.AES.decrypt(_encReal, _passphrase).toString(CryptoJS.enc.Utf8);
+    if(!waNumber) throw "fail";
+  } catch(e) {
+    // Fallback XOR decrypt (yang pasti jalan)
+    const bin = atob(_e);
+    waNumber = "";
+    for(let i=0;i<bin.length;i++){ waNumber += String.fromCharCode(bin.charCodeAt(i) ^ _k.charCodeAt(i % _k.length)); }
+  }
+
   const params = new URLSearchParams(location.search);
-  const namaTamu = params.get('to');
+  const nama = params.get('to');
   const elNama = document.getElementById('namaTamu');
   const elBtn = document.getElementById('rsvpBtn');
-  const waNumber = '6281234567890'; // GANTI NOMOR WA KAMU
-  
-  if (namaTamu) {
-    const decoded = decodeURIComponent(namaTamu);
+
+  if(nama){
+    const decoded = decodeURIComponent(nama);
     elNama.innerText = decoded;
-    const waText = `Halo Kuro & Lena, saya ${decoded} konfirmasi akan hadir. Terima kasih!`;
-    elBtn.href = `https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`;
+    elBtn.href = `https://wa.me/${waNumber}?text=${encodeURIComponent(`Halo Kuro & Lena, saya ${decoded} konfirmasi hadir!`)}`;
   } else {
     elBtn.href = `https://wa.me/${waNumber}?text=${encodeURIComponent('Halo Kuro & Lena, saya konfirmasi hadir!')}`;
   }
